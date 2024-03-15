@@ -38,7 +38,7 @@ article {
 article textarea,
 article .preview,
 article .preview_loading {
-  overflow: scroll;
+  overflow: auto;
   flex-grow: 1;
   border: 1px solid #666;
   padding: 1em;
@@ -94,8 +94,21 @@ button.right+button.right {
   margin-right: 1em;
 }
 
+.modal > input:checked ~ .overlay ~ *
+{
+  overflow: inherit !important;
+}
+
 .modal article {
   min-width: 300px;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.modal .content
+{
+  overflow: auto;
+  max-height: 100%;
 }
 
 div[data-modal="note"] textarea {
@@ -113,7 +126,8 @@ main>article>section.content {
   flex-grow: 1;
   display: flex;
   flex-flow: column;
-  overflow: scroll;
+  overflow: auto;
+  max-height: 100%;
 }
 
 main>article {
@@ -208,12 +222,6 @@ main>footer {
 
   main>article footer {
     flex-shrink: 0;
-  }
-
-  main>article section.content {
-    flex-grow: 1;
-    height: 100%;
-    overflow: scroll;
   }
 
   main>article section.content>textarea {

@@ -70,8 +70,21 @@ class TandemCorrectView {
     }
 
     showModal(title, content) {
+        var normalizedContent = content.replace(/\r\n|\r|\n/g, '\n');
+        var lines = normalizedContent.split("\n");
+
+        var modalContent = document.getElementById('modal_content');
+        modalContent.innerHTML = '';
+
+        lines.forEach(function (line, index) {
+            var textNode = document.createTextNode(line);
+            modalContent.appendChild(textNode);
+
+            if (index < lines.length - 1)
+                modalContent.appendChild(document.createElement('br'));
+        });
+
         document.getElementById('modal_title').textContent = title;
-        document.getElementById('modal_content').textContent = content;
         document.getElementById('modal_message').checked = true;
     }
 
