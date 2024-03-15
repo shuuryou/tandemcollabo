@@ -1,0 +1,277 @@
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family:  sans-serif;
+  background-color: #E8E8E8;
+  line-height: 1.6;
+}
+
+main {
+  width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+h1:first-child {
+  padding-top: 0;
+}
+
+article {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+  transition: none !important;
+}
+
+article textarea,
+article .preview,
+article .preview_loading {
+  overflow: scroll;
+  flex-grow: 1;
+  border: 1px solid #666;
+  padding: 1em;
+  border-radius: 3px;
+  height: 1vh;
+  max-height: 100%;
+}
+
+span.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.h-captcha {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+article .save_link,
+article .save_loading {
+  width: 100%;
+}
+
+article .save_link input {
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hide {
+  display: none;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+button.left+button.left {
+  margin-left: 1em;
+}
+
+button.right+button.right {
+  margin-right: 1em;
+}
+
+.modal article {
+  min-width: 300px;
+}
+
+div[data-modal="note"] textarea {
+  height: 200px;
+  width: 100%;
+}
+
+div[data-modal="note"] article {
+  width: 90%;
+  max-width: 860px;
+
+}
+
+main>article>section.content {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column;
+  overflow: scroll;
+}
+
+main>article {
+  display: flex;
+  flex-flow: column;
+  height: 500px;
+}
+
+main.view {
+  height: 100%;
+}
+
+main.view>article {
+  height: 100%;
+  max-height: 80vh;
+  min-height: 500px;
+}
+
+main.view>article section:last-of-type {
+  text-align: center;
+
+}
+
+main.view>article footer {
+  text-align: center;
+}
+
+main>footer {
+  text-align: center;
+  color: #666;
+  font-size: 0.8em;
+}
+
+.note {
+  text-decoration: underline;
+  text-decoration-color: #2B5166;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: 3px;
+  -webkit-text-decoration: underline;
+  -webkit-text-decoration-color: #2B5166;
+  -webkit-text-decoration-thickness: 3px;
+  -webkit-text-decoration-skip-ink: none;
+}
+
+.insert {
+  text-decoration: none;
+  background-color: #D9EB52;
+}
+
+.delete {
+  background-color: #F26B7A;
+  color: #fff;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 900px) {
+  main {
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: inherit;
+    position: inherit;
+    top: inherit;
+    right: inherit;
+    transform: inherit;
+    min-width: inherit;
+  }
+
+  main>article {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+  }
+
+  main.view>article section:last-of-type {
+    font-size: 0.75em;
+  }
+
+  main.view>article footer button {
+    font-size: 0.75em;
+  }
+
+  main>footer {
+    display: none;
+  }
+
+  main.view>article {
+    max-height: inherit !important;
+    min-height: inherit !important;
+  }
+
+  main>article footer {
+    flex-shrink: 0;
+  }
+
+  main>article section.content {
+    flex-grow: 1;
+    height: 100%;
+    overflow: scroll;
+  }
+
+  main>article section.content>textarea {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #666;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.scroll-shadows {
+  /* Seriously, fuck Apple and all the copycats. Anyone who decides that
+   * hiding scrollbars by default or making them tiny is good UX should
+   * be shot.
+   *
+   * The following code is shoplifted from
+   * https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/
+   */
+
+  background:
+    /* Shadow Cover TOP */
+    linear-gradient(white 30%,
+      rgba(255, 255, 255, 0)) center top,
+
+    /* Shadow Cover BOTTOM */
+    linear-gradient(rgba(255, 255, 255, 0),
+      white 70%) center bottom,
+
+    /* Shadow TOP */
+    radial-gradient(farthest-side at 50% 0,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)) center top,
+
+    /* Shadow BOTTOM */
+    radial-gradient(farthest-side at 50% 100%,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)) center bottom;
+
+  background-repeat: no-repeat;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  background-attachment: local, local, scroll, scroll;
+}

@@ -1,0 +1,13 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "corrections" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"original"	BLOB NOT NULL,
+	"corrected"	BLOB NOT NULL,
+	"rangy_data"	BLOB NOT NULL,
+	"note_data"	BLOB NOT NULL,
+	"ts"	INTEGER NOT NULL,
+	"ip"	TEXT NOT NULL,
+	"key"	TEXT NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+COMMIT;

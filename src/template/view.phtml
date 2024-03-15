@@ -1,0 +1,106 @@
+<?php if (!defined('IN_TANDEM')) die(); ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title><?php __('SITE_NAME'); ?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+  <link rel="stylesheet" href="css/style.css?<?php CacheBuster('css/style.css'); ?>">
+  <script src="js/rangy.min.js"></script>
+  <script src="js/view.js?<?php CacheBuster('js/view.js'); ?>"></script>
+</head>
+
+<body>
+  <main class="view" id="Viewer">
+    <article class="card" data-view="changes">
+      <header>
+        <?php __('VIEW_CHANGES_TITLE'); ?>
+      </header>
+      <section>
+        <p><?php __('VIEW_CHANGES_TEXT'); ?></p>
+      </section>
+      <section class="content">
+        <div class="preview" id="changes"><?php echo $diff; ?></div>
+      </section>
+      <section>
+        <p><a href="/"><?php __('VIEW_FOOTER_MAKE_YOUR_OWN'); ?></a></p>
+      </section>
+      <footer>
+        <button data-purpose="changes"><?php __('BUTTON_CHANGES'); ?></button>
+        <button data-purpose="original"><?php __('BUTTON_ORIGINAL'); ?></button>
+        <button data-purpose="corrected"><?php __('BUTTON_CORRECTED'); ?></button>
+      </footer>
+    </article>
+
+    <article class="card hide" data-view="original">
+      <header>
+        <?php __('VIEW_ORIGINAL_TITLE'); ?>
+      </header>
+      <section>
+        <p><?php __('VIEW_ORIGINAL_TEXT'); ?></p>
+      </section>
+      <section class="content">
+        <div class="preview" id="changes">
+          <?php echo nl2br(htmlspecialchars($original)); ?>
+        </div>
+      </section>
+      <section>
+        <p><a href="/"><?php __('VIEW_FOOTER_MAKE_YOUR_OWN'); ?></a></p>
+      </section>
+      <footer>
+        <button data-purpose="changes"><?php __('BUTTON_CHANGES'); ?></button>
+        <button data-purpose="original"><?php __('BUTTON_ORIGINAL'); ?></button>
+        <button data-purpose="corrected"><?php __('BUTTON_CORRECTED'); ?></button>
+      </footer>
+    </article>
+
+    <article class="card hide" data-view="corrected">
+      <header>
+        <?php __('VIEW_CORRECTED_TITLE'); ?>
+      </header>
+      <section>
+        <p><?php __('VIEW_CORRECTED_TEXT'); ?></p>
+      </section>
+      <section class="content">
+        <div class="preview">
+          <?php echo nl2br(htmlspecialchars($corrected)); ?>
+        </div>
+      </section>
+      <section>
+        <p><a href="/"><?php __('VIEW_FOOTER_MAKE_YOUR_OWN'); ?></a></p>
+      </section>
+      <footer>
+        <button data-purpose="changes"><?php __('BUTTON_CHANGES'); ?></button>
+        <button data-purpose="original"><?php __('BUTTON_ORIGINAL'); ?></button>
+        <button data-purpose="corrected"><?php __('BUTTON_CORRECTED'); ?></button>
+      </footer>
+    </article>
+
+    <footer>
+      <p><?php __('ABOUT_TEXT_1'); ?> <a target="_blank" href="https://github.com/shuuryou">shuuryou</a> <?php __('ABOUT_TEXT_2'); ?></p>
+    </footer>
+  </main>
+
+  <div class="modal" data-modal="message">
+    <input id="modal_message" type="checkbox">
+    <label for="modal_message" class="overlay"></label>
+    <article>
+      <header>
+        <span id="modal_title"></span>
+        <label for="modal_message" class="close">&times;</label>
+      </header>
+      <section class="content" id="modal_content"></section>
+      <footer>
+        <label for="modal_message" class="button right"><?php __('BUTTON_OK'); ?></label>
+      </footer>
+    </article>
+  </div>
+  <script>
+    var NOTE_DATA = <?php echo json_encode($note_data, JSON_UNESCAPED_UNICODE); ?>;
+    var HIGHLIGHT_DATA = <?php echo json_encode($rangy_data, JSON_UNESCAPED_UNICODE); ?>;
+  </script>
+</body>
+
+</html>

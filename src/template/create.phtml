@@ -1,0 +1,188 @@
+<?php if (!defined('IN_TANDEM')) die(); ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title><?php __('SITE_NAME'); ?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+  <link rel="stylesheet" href="css/style.css?<?php CacheBuster('css/style.css'); ?>">
+  <script src="js/rangy.min.js"></script>
+  <script src="js/script.js?<?php CacheBuster('js/script.js'); ?>"></script>
+  <script src="https://www.hCaptcha.com/1/api.js" async defer></script>
+</head>
+
+<body>
+  <main id="Wizard">
+    <article class="card" data-step="0">
+      <header>
+        <?php __('STEP0_TITLE'); ?>
+      </header>
+      <section>
+      </section>
+      <section class="content">
+        <p><?php __('STEP0_INTRO_TEXT'); ?></p>
+        <p><?php __('STEP0_INTRO_TEXT2'); ?></p>
+        <ol>
+          <li><?php __('STEP0_INTRO_STEP1'); ?></li>
+          <li><?php __('STEP0_INTRO_STEP2'); ?></li>
+          <li><?php __('STEP0_INTRO_STEP3'); ?></li>
+          <li><?php __('STEP0_INTRO_STEP4'); ?></li>
+        </ol>
+        <p><?php __('STEP0_CALL_TO_ACTION'); ?></p>
+      </section>
+      <footer>
+        <a class="button" href="/?legal"><?php __('BUTTON_LEGAL'); ?></a>
+        <button class="right success" data-purpose="Navigate_Next"><?php __('BUTTON_BEGIN'); ?></button>
+      </footer>
+    </article>
+
+    <article class="card hide" data-step="1">
+      <header>
+        <?php __('STEP1_TITLE'); ?>
+      </header>
+      <section>
+        <p><?php __('STEP1_INTRO_TEXT'); ?></p>
+      </section>
+      <section class="content">
+        <textarea placeholder="<?php __('STEP1_CONTENT_PLACEHOLDER'); ?>" id="originalText" maxlength="32000"></textarea>
+      </section>
+      <footer>
+        <button class="left" data-purpose="Navigate_Previous"><?php __('BUTTON_PREVIOUS'); ?></button>
+        <button class="right" data-purpose="Navigate_Next"><?php __('BUTTON_NEXT'); ?></button>
+      </footer>
+    </article>
+
+    <article class="card hide" data-step="3">
+      <header>
+        <?php __('STEP2_TITLE'); ?>
+      </header>
+      <section>
+        <p><?php __('STEP2_INTRO_TEXT'); ?></p>
+      </section>
+      <section class="content">
+        <textarea id="correctedText" maxlength="32000"></textarea>
+      </section>
+      <footer>
+        <button class="left" data-purpose="Navigate_Previous"><?php __('BUTTON_PREVIOUS'); ?></button>
+        <button class="right" data-purpose="Navigate_Next"><?php __('BUTTON_NEXT'); ?></button>
+      </footer>
+    </article>
+
+    <article class="card hide" data-step="4">
+      <header>
+        <?php __('STEP3_TITLE'); ?>
+      </header>
+      <section>
+        <p><?php __('STEP3_INTRO_TEXT'); ?></p>
+      </section>
+      <section class="content">
+        <div class="preview_loading" id="preview_loading">
+          <span class="loader"></span>
+        </div>
+        <div class="preview hide" id="changes"></div>
+      </section>
+      <footer>
+        <button class="left" data-purpose="Navigate_Previous"><?php __('BUTTON_PREVIOUS'); ?></button>
+        <button class="left" data-purpose="Add_Note"><?php __('BUTTON_ADD_NOTE'); ?></button>
+        <button class="right" data-purpose="Navigate_Next"><?php __('BUTTON_NEXT'); ?></button>
+      </footer>
+    </article>
+
+    <article class="card hide" data-step="5">
+      <header>
+        <?php __('STEP4_TITLE'); ?>
+      </header>
+      <section>
+        <p><?php __('STEP4_INTRO_TEXT'); ?></p>
+      </section>
+      <section class="content">
+        <form method="post" id="captcha">
+          <div class="h-captcha" data-sitekey="<?php echo htmlspecialchars(HCAPTCHA_SITEKEY); ?>"></div>
+        </form>
+      </section>
+      <footer>
+        <button class="left" data-purpose="Navigate_Previous"><?php __('BUTTON_PREVIOUS'); ?></button>
+        <button class="right" data-purpose="Navigate_Next"><?php __('BUTTON_NEXT'); ?></button>
+      </footer>
+    </article>
+
+    <article class="card hide" data-step="6">
+      <header>
+        <?php __('STEP5_TITLE'); ?>
+      </header>
+      <section>
+        <p><?php __('STEP5_INTRO_TEXT'); ?></p>
+      </section>
+      <section class="content">
+        <div class="save_loading" id="save_loading">
+          <span class="loader"></span>
+        </div>
+        <div class="save_link hide" id="save_link">
+          <input type="url" readonly>
+        </div>
+      </section>
+      <footer>
+        <a href="/" class="button"><?php __('BUTTON_HOME'); ?></a>
+      </footer>
+    </article>
+
+    <footer>
+      <p><?php __('ABOUT_TEXT_1'); ?> <a target="_blank" href="https://github.com/shuuryou">shuuryou</a> <?php __('ABOUT_TEXT_2'); ?></p>
+    </footer>
+  </main>
+  <div class="modal" data-modal="message">
+    <input id="modal_message" type="checkbox">
+    <label for="modal_message" class="overlay"></label>
+    <article>
+      <header>
+        <span id="modal_title"></span>
+        <label for="modal_message" class="close">&times;</label>
+      </header>
+      <section class="content" id="modal_content"></section>
+      <footer>
+        <label for="modal_message" class="button right"><?php __('BUTTON_OK'); ?></label>
+      </footer>
+    </article>
+  </div>
+  <div class="modal" data-modal="note">
+    <input id="modal_note" type="checkbox">
+    <label for="modal_note" class="overlay"></label>
+    <article>
+      <header>
+        Enter Note
+        <label for="modal_note" class="close">&times;</label>
+      </header>
+      <section class="content">
+        <textarea maxlength="1000" id="modal_note_text" placeholder="<?php __('NOTE_MODAL_PLACEHOLDER'); ?>"></textarea>
+      </section>
+      <footer>
+      <button data-action="AddNote" class="success right"><?php __('BUTTON_ADD'); ?></button>
+        <button data-action="Cancel" class="dangerous right"><?php __('BUTTON_CANCEL'); ?></button>
+      </footer>
+    </article>
+  </div>
+  <div class="modal" data-modal="prompt">
+    <input id="modal_prompt" type="checkbox">
+    <label for="modal_prompt" class="overlay"></label>
+    <article>
+      <header>
+        <span id="prompt_title"></span>
+        <label for="modal_prompt" class="close">&times;</label>
+      </header>
+      <section class="content" id="prompt_content"></section>
+      <footer>
+        <button data-action="No" class="dangerous right"><?php __('BUTTON_NO'); ?></button>
+        <button data-action="Yes" class="success right"><?php __('BUTTON_YES'); ?></button>
+      </footer>
+    </article>
+  </div>
+  <script>
+    <?php global $JS_LOCALIZE; ?>
+    var SESSION_ID = <?php echo json_encode($session_id); ?>;
+    var JS_LOCALIZE = <?php echo json_encode($JS_LOCALIZE); ?>;
+  </script>
+</body>
+
+</html>
