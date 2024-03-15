@@ -92,7 +92,12 @@ class TandemCorrect {
     }
 
     onSaveLinkFocus(event) {
+        // The bullshit before and after select() is to appease Safari on iOS.
+        // FUCK APPLE!
+
+        event.target.readOnly = false;
         event.target.select();
+        setTimeout(() => { event.target.readOnly = true; }, 100);
     }
 
     async handleNavigation(purpose) {
@@ -364,7 +369,7 @@ class TandemCorrect {
         document.getElementById('modal_title').textContent = title;
         document.getElementById('modal_message').checked = true;
     }
-    
+
     showPrompt(title, content) {
         document.getElementById('prompt_title').textContent = title;
         document.getElementById('prompt_content').textContent = content;
