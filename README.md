@@ -2,8 +2,6 @@
 
 Tandem Collabo offers an innovative approach to enhancing language learning through text correction. It simplifies the process of correcting text during language exchanges. If you receive a message in your native language from your conversation partner that needs correction, Tandem Collabo enables you to correct it, annotate your corrections, and share a link with your partner. This way, they can easily view your corrections and notes, facilitating a better learning experience.
 
-Try out Tandem Collabo by visiting **https://tandem.lima.zone/**.
-
 ## How It Works
 
 Tandem Collabo is user-friendly, designed to perform seamlessly across desktop, tablet, and mobile browsers.
@@ -32,9 +30,7 @@ Upon accessing the link, your partner will be presented with a read-only view sh
 
 Tandem Collabo is released under the Server Side Public License (SSPL). Utilizing this project within your website or service mandates that your entire source code, inclusive of all software, APIs, and dependencies necessary for running your service, be disclosed under the SSPL.
 
-To preserve the uniqueness of Tandem Collabo, I kindly request that additional public instances not be created. However, private use for you and your friends is acceptable, because I would probably never notice.
-
-Feel free to link to the official Tandem Collabo instance at https://tandem.lima.zone/ from your website without restriction.
+Private use for you and your friends is acceptable, because I would probably never notice.
 
 ## Help Wanted
 
